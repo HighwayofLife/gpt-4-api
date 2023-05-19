@@ -85,6 +85,7 @@ def call_gpt_4(input_text):
     except Exception as e:
         print(f"Unknown error: {e}")
 
+
 def print_response(input_text):
     response = call_gpt_4(input_text)
     print("-----------------\n")
@@ -108,13 +109,13 @@ def read_from_file(file_path):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Send a file prompt to GPT-4")
     parser.add_argument(
-        "input_files", nargs="+", help="Input files to use for a prompt"
+        "input-files", nargs="+", help="Input files to use for a prompt"
     )
     parser.add_argument(
         "--model", type=str, default=None, help="OpenAI Chat Model to use"
     )
     parser.add_argument(
-        "--max_tokens", type=int, default=None, help="Max tokens to use"
+        "--max-tokens", type=int, default=None, help="Max tokens to use"
     )
     parser.add_argument(
         "--temperature", type=float, default=None, help="Temperature to use"

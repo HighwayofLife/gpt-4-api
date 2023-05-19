@@ -38,16 +38,24 @@ You can run the script from the command line with the following syntax:
 ```bash
 python gpt4.py input_file1 [input_file2 ...]
   [--model MODEL]
-  [--max_tokens MAX_TOKENS]
+  [--max-tokens MAX_TOKENS]
   [--temperature TEMPERATURE]
   [--stream STREAM]
+```
+
+These parameters can also all be set from the Environment:
+```bash
+export OPENAI_MODEL="gpt-4"
+export OPENAI_MAX_TOKENS=1000
+export OPENAI_TEMPERATURE=1
+export OPENAI_STREAM=true
 ```
 
 | Parameter                       | Description                                                                                               | Default |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------- | ------- |
 | `input_file1 [input_file2 ...]` | One or more text files containing the prompts to send to the GPT-4 API.                                   | N/A     |
 | `--model MODEL`                 | The ID of the model to use.                                                                               | 'gpt-4' |
-| `--max_tokens MAX_TOKENS`       | The maximum number of tokens for the API to generate.                                                     | 4500    |
+| `--max-tokens MAX_TOKENS`       | The maximum number of tokens for the API to generate.                                                     | 4500    |
 | `--temperature TEMPERATURE`     | The temperature for the API to use when generating text.                                                  | 1       |
 | `--stream STREAM`               | Whether to enable streaming. If set to `true`, the script will print the API's responses as they come in. | `false` |
 
