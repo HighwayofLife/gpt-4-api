@@ -64,23 +64,32 @@ def call_gpt_4(input_text):
         }
     ]
 
-    # Make the API call
-    response = openai.ChatCompletion.create(
-        model=MODEL,
-        max_tokens=MAX_TOKENS,
-        temperature=TEMPERATURE,
-        messages=messages,
-        stream=STREAM
-    )
-    return response
+    try:
+        # Make the API call
+        response = openai.ChatCompletion.create(
+            model=MODEL,
+            max_tokens=MAX_TOKENS,
+            temperature=TEMPERATURE,
+            messages=messages,
+            stream=STREAM
+        )
+        return response
+    except openai.Error as e:
+        print(f"An error occurred: {e}")
 
 
 def print_response(input_text):
     response = call_gpt_4(input_text)
+    print("-----------------\n")
 
     if STREAM:
+        # If streaming, the response is an iterable
+        print(" ", end="")
         for message in response:
-            print(message)
+            if 'content' in message['choices'][0]['delta']:
+                print(message['choices'][0]['delta']
+                      ['content'], end='', flush=True)
+        print("\n\n-----------------")  # print a newline at the end
     else:
         print(response)
 
